@@ -41,31 +41,24 @@ So lets start with creating a helm chart.
 list the files created with helm create commond
 
 ```
-    $ ls -lRt hello-world
-    hello-world:
-    total 12
-    drwxr-xr-x 1 Sumit 197609    0 Jan 31 22:18 charts/
-    drwxr-xr-x 1 Sumit 197609    0 Jan 31 22:18 templates/
-    -rw-r--r-- 1 Sumit 197609 1804 Jan 31 22:18 values.yaml
-    -rw-r--r-- 1 Sumit 197609 1147 Jan 31 22:18 Chart.yaml
+    $ tree hello-world
+    hello-world
+    |-- Chart.yaml
+    |-- charts
+    |-- templates
+    |   |-- NOTES.txt
+    |   |-- _helpers.tpl
+    |   |-- deployment.yaml
+    |   |-- hpa.yaml
+    |   |-- ingress.yaml
+    |   |-- service.yaml
+    |   |-- serviceaccount.yaml
+    |   `-- tests
+    |       `-- test-connection.yaml
+    `-- values.yaml
 
-    hello-world/charts:
-    total 0
+    3 directories, 10 files
 
-    hello-world/templates:
-    total 22
-    -rw-r--r-- 1 Sumit 197609 1822 Jan 31 22:18 _helpers.tpl
-    drwxr-xr-x 1 Sumit 197609    0 Jan 31 22:18 tests/
-    -rw-r--r-- 1 Sumit 197609 1763 Jan 31 22:18 NOTES.txt
-    -rw-r--r-- 1 Sumit 197609  928 Jan 31 22:18 hpa.yaml
-    -rw-r--r-- 1 Sumit 197609  328 Jan 31 22:18 serviceaccount.yaml
-    -rw-r--r-- 1 Sumit 197609  373 Jan 31 22:18 service.yaml
-    -rw-r--r-- 1 Sumit 197609 1856 Jan 31 22:18 deployment.yaml
-    -rw-r--r-- 1 Sumit 197609 1064 Jan 31 22:18 ingress.yaml
-
-    hello-world/templates/tests:
-    total 1
-    -rw-r--r-- 1 Sumit 197609 391 Jan 31 22:18 test-connection.yaml
 
 ```
 
