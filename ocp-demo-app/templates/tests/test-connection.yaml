@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['curl']
-      args: ['localhost:{{ .Values.service.nodePort }}']
+      args: ['{{ include "ocp-demo-app.fullname" . }}:{{ .Values.service.port }}']
   restartPolicy: Never
