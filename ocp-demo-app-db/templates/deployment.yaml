@@ -62,6 +62,8 @@ spec:
                   key: postgresql-password
             - name: POSTGRESQL_DB_NAME
               value: {{ .Values.global.postgresql.postgresqlDatabase }}
+            - name: POSTGRESQL_SERVICE_NAME
+              value: {{ include "ocp-demo-app-db.postgresql.service" . }}
       
       {{- with .Values.nodeSelector }}
       nodeSelector:

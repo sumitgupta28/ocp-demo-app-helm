@@ -403,3 +403,54 @@ This Command shows you the helm version.
         https://artifacthub.io/packages/helm/bitnami/po...      10.2.6          11.10.0         Chart for PostgreSQL, an object-relational data...
         https://artifacthub.io/packages/helm/bitnami/po...      6.5.0           11.10.0         Chart for PostgreSQL with HA architecture (usin...
         https://artifacthub.io/packages/helm/halkeye/turtl      0.1.7           0.7             The secure, collaborative notebook - Totally pr...
+
+
+
+## helm dependency
+
+1. Manage the dependencies of a chart.
+2. Helm charts store their dependencies in 'charts/'. For chart developers, it is often easier to manage dependencies in 'Chart.yaml' which declares all dependencies.
+3. The dependency commands operate on that file, making it easy to synchronize between the desired dependencies and the actual dependencies stored in the 'charts/' directory.
+
+this Chart.yaml declares two dependencies:
+
+        # Chart.yaml
+        dependencies:
+        - name: postgresql
+        version: 10.2.6
+        repository:  https://charts.bitnami.com/bitnami
+        condition: postgresql.enabled
+
+### helm dependency update
+1. update charts/ based on the contents of Chart.yaml
+
+        $ helm dep update ocp-demo-app-db
+        Hang tight while we grab the latest from your chart repositories...
+        ...Successfully got an update from the "bitnami" chart repository
+        ...Successfully got an update from the "stable" chart repository
+        Update Complete. ⎈Happy Helming!⎈
+        Saving 1 charts
+        Downloading postgresql from repo https://charts.bitnami.com/bitnami
+        Deleting outdated charts
+        
+        $ tree ocp-demo-app-db/
+        ocp-demo-app-db/
+        ├── Chart.lock
+        ├── charts
+        │   └── postgresql-10.2.6.tgz
+        ├── Chart.yaml
+        ├── templates
+        │   ├── deployment.yaml
+        │   ├── _helpers.tpl
+        │   ├── hpa.yaml
+        │   ├── ingress.yaml
+        │   ├── NOTES.txt
+        │   ├── serviceaccount.yaml
+        │   ├── service.yaml
+        │   └── tests
+        │       └── test-connection.yaml
+        └── values.yaml
+
+        3 directories, 12 files
+
+here under the charts folder we can see the postgresql-10.2.6.tgz is downloaded which is described in Chart.yaml.

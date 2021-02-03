@@ -69,3 +69,10 @@ Create the name of the postgresql secret to use
 {{.Release.Name}}-{{.Values.postgresql.nameOverride }}
 {{- end }}
 
+
+{{/*
+Create the name of the Service Name to use
+*/}}
+{{- define "ocp-demo-app-db.postgresql.service" -}}
+{{.Release.Name}}-{{.Values.postgresql.nameOverride }}
+{{- end }}
