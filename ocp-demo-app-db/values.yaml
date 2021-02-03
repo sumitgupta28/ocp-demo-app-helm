@@ -80,8 +80,8 @@ affinity: {}
 
 postgresql:
   enabled: true
+  nameOverride: postgresql
 global:
   postgresql:
     postgresqlDatabase: awesomedb
     postgresqlUsername: amazinguser
-    postgresqlPassword: perfectpassword

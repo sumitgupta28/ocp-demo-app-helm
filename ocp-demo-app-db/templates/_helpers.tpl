@@ -60,3 +60,12 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+
+{{/*
+Create the name of the postgresql secret to use
+*/}}
+{{- define "ocp-demo-app-db.postgresql.secret" -}}
+{{.Release.Name}}-{{.Values.postgresql.nameOverride }}
+{{- end }}
+

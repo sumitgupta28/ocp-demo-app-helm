@@ -47,6 +47,22 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: POSTGRES_POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "ocp-demo-app-db.postgresql.secret" . }}
+                  key: postgresql-postgres-password
+            - name: POSTGRESQL_USER
+              value: {{ .Values.global.postgresql.postgresqlUsername }}
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "ocp-demo-app-db.postgresql.secret" . }}
+                  key: postgresql-password
+            - name: POSTGRESQL_DB_NAME
+              value: {{ .Values.global.postgresql.postgresqlDatabase }}
+      
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
