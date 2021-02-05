@@ -1,14 +1,14 @@
-# Default values for ocp-demo-app-db.
+# Default values for demo-app-db-fly-way.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: sumitgupta28/ocp-demo-app-db
-  pullPolicy: Always
+  repository: nginx
+  pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  tag: ""
 
 imagePullSecrets: []
 nameOverride: ""
@@ -16,7 +16,7 @@ fullnameOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
-  create: false
+  create: true
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
@@ -37,9 +37,8 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: NodePort
-  port: 8080
-  targetPort:  30080
+  type: ClusterIP
+  port: 80
 
 ingress:
   enabled: false
@@ -78,16 +77,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-## Postgresql properties.
-
-postgresql:
-  enabled: true
-  nameOverride: postgresql
-  persistence:
-    enabled: true
-    
-global:
-  postgresql:
-    postgresqlDatabase: awesomedb
-    postgresqlUsername: amazinguser
