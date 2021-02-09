@@ -56,10 +56,11 @@ spec:
             - name: POSTGRESQL_USER
               value: {{ .Values.global.postgresql.postgresqlUsername }}
             - name: POSTGRESQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "ocp-demo-app-db.postgresql.secret" . }}
-                  key: postgresql-password
+              value: {{ .Values.global.postgresql.postgresqlPassword }}
+              #valueFrom:
+              #  secretKeyRef:
+              #    name: {{ include "ocp-demo-app-db.postgresql.secret" . }}
+              #    key: postgresql-password
             - name: POSTGRESQL_DB_NAME
               value: {{ .Values.global.postgresql.postgresqlDatabase }}
             - name: POSTGRESQL_SERVICE_NAME

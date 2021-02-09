@@ -86,8 +86,6 @@ postgresql:
   nameOverride: postgresql
   persistence:
     enabled: true
-    
-global:
-  postgresql:
-    postgresqlDatabase: awesomedb
-    postgresqlUsername: amazinguser
+  postgresqlUsername: amazinguser
+  postgresqlPassword: postgresHelm
+  postgresqlDatabase: postgresHelmDB
