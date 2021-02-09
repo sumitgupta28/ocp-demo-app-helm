@@ -48,21 +48,12 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
-            - name: POSTGRES_POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "ocp-demo-app-db.postgresql.secret" . }}
-                  key: postgresql-postgres-password
             - name: POSTGRESQL_USER
-              value: {{ .Values.global.postgresql.postgresqlUsername }}
+              value: {{ .Values.postgresql.postgresqlUsername }}
             - name: POSTGRESQL_PASSWORD
-              value: {{ .Values.global.postgresql.postgresqlPassword }}
-              #valueFrom:
-              #  secretKeyRef:
-              #    name: {{ include "ocp-demo-app-db.postgresql.secret" . }}
-              #    key: postgresql-password
+              value: {{ .Values.postgresql.postgresqlPassword }}
             - name: POSTGRESQL_DB_NAME
-              value: {{ .Values.global.postgresql.postgresqlDatabase }}
+              value: {{ .Values.postgresql.postgresqlDatabase }}
             - name: POSTGRESQL_SERVICE_NAME
               value: {{ include "ocp-demo-app-db.postgresql.service" . }}
       
